@@ -18,27 +18,34 @@ class MyApp extends StatelessWidget {
         //default color
         scaffoldBackgroundColor: kPrimaryColor,
         primaryColor: kPrimaryColor,
+        appBarTheme: AppBarTheme(
+           color: kPrimaryColor,
+           elevation: 0,
+        ),
         textTheme:
             GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme)
                 .apply()
                 .copyWith(
-                    bodyText1: TextStyle(
-                        color: kTextWhiteColor,
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.bold),
-              bodyText2: TextStyle(
-                  color: kTextWhiteColor,
-                  fontSize: 28.0,
+                  bodyText1: TextStyle(
+                      color: kTextWhiteColor,
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold),
+                  bodyText2: TextStyle(
+                    color: kTextWhiteColor,
+                    fontSize: 28.0,
+                  ),
+                  subtitle1: TextStyle(
+                      color: kTextWhiteColor,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w500),
+                  subtitle2: TextStyle(
+                      color: kTextWhiteColor,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w300),
+
                 ),
 
-              subtitle1: TextStyle(
-                    color: kTextWhiteColor,
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.w500),
-                    subtitle2: TextStyle(
-                        color: kTextWhiteColor,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w300),),
+
         //inputdecoration theme for all our the app
         inputDecorationTheme: InputDecorationTheme(
           //label style for formField

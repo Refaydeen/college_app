@@ -1,6 +1,8 @@
 import 'package:college_app/components/custom_buttons.dart';
 import 'package:college_app/constant_color.dart';
 import 'package:college_app/screens/home_screen/home_screen.dart';
+import 'package:college_app/screens/login_screen/forgot_Password.dart';
+import 'package:college_app/screens/signup_Screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 late bool _passwordVisible;
@@ -27,87 +29,96 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      //when user tap anywhere on the screen ,keyboard hides
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-          body: ListView(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 2.8,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/transLogo.png',
-                  height: 150.0,
-                  width: 150.0,
-                ),
-                SizedBox(
-                  height: kDefaultPadding / 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Hi',
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontWeight: FontWeight.w200,
-                            )),
-                    Text('Measian',
-                        style: Theme.of(context).textTheme.bodyText1),
-                  ],
-                ),
-                SizedBox(
-                  height: kDefaultPadding / 6,
-                ),
-                Text('Sign to continue',
-                    style: Theme.of(context).textTheme.subtitle2),
-              ],
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(kDefaultPadding * 3),
-                topRight: Radius.circular(kDefaultPadding * 3),
-                //bottomLeft: Radius.circular(kDefaultPadding*3),
-                //bottomRight: Radius.circular(kDefaultPadding*3),
+    return Scaffold(
+
+        body: ListView(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height / 2.8,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/transLogo.png',
+                height: 150.0,
+                width: 150.0,
               ),
-              color: kOtherColor,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(kDefaultPadding),
-              child: Column(
+              SizedBox(
+                height: kDefaultPadding / 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        sizedBox,
-                        buildEmailField(),
-                        sizedBox,
-                        buildPasswordField(),
-                        sizedBox,
-                        DefaultButton(
-                          onPress: () {
-                            if (_formKey.currentState!.validate()) {
-                              //go to next activity
-                              Navigator.restorablePushNamedAndRemoveUntil(
-                                  context,
-                                  HomeScreen.routeName,
-                                  (route) => false);
-                            }
-                          },
-                          title: 'SIGN IN',
-                          iconData: Icons.arrow_forward_outlined,
-                        ),
-                        sizedBox,
-                        Align(
-                          alignment: Alignment.bottomRight,
+                  Text('Hi',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontWeight: FontWeight.w200,
+                          )),
+                  Text('Measian',
+                      style: Theme.of(context).textTheme.bodyText1),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding / 6,
+              ),
+              Text('Sign to continue',
+                  style: Theme.of(context).textTheme.subtitle2),
+            ],
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(kDefaultPadding * 3),
+              topRight: Radius.circular(kDefaultPadding * 3),
+              //bottomLeft: Radius.circular(kDefaultPadding*3),
+              //bottomRight: Radius.circular(kDefaultPadding*3),
+            ),
+            color: kOtherColor,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(kDefaultPadding/2),
+            child: Column(
+              children: [
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      sizedBox,
+                      buildEmailField(),
+                      sizedBox,
+                      buildPasswordField(),
+                      sizedBox,
+
+                      DefaultButton(
+                        onPress: () {
+                          if (_formKey.currentState!.validate()) {
+                            //go to next activity
+                            Navigator.restorablePushNamedAndRemoveUntil(
+                                context,
+                                HomeScreen.routeName,
+                                (route) => false);
+                          }
+                        },
+                        title: 'LOGIN',
+                        iconData: Icons.arrow_forward_outlined,
+                      ),
+                      sizedBox,
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            Navigator.pushReplacement(context, MaterialPageRoute(
+                                builder: (context) =>ForgotScreen()),);
+                          });
+                        },
+
+
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
                           child: Text(
                             'Forgot Password?',
                             textAlign: TextAlign.end,
@@ -117,16 +128,46 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                       ),
+                      ),
+
+
+                      SizedBox(height: kDefaultPadding,),
+                      const Text("Don't have an account?",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: kTextBlackColor,
+
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => SignUpScreen()),);
+                          });
+                        },
+                        child: Container(
+
+                            child: const Text("SIGN UP NOW",
+                              style: TextStyle(
+                                  color: kSecondaryColor,
+                                  fontSize: 17,
+
+                              ),
+                            )
+                        ),
+                      ),
+                      SizedBox(height: 80, width: 20),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          )
-        ],
-      )),
-    );
+          ),
+        )
+      ],
+    ));
   }
 
   TextFormField buildEmailField() {
@@ -178,6 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
             setState(() {
               _passwordVisible = !_passwordVisible;
             });
+
           },
           icon: Icon(
             _passwordVisible ? Icons.visibility_off_outlined : Icons.visibility,

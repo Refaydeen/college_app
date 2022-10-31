@@ -1,6 +1,7 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:college_app/screens/login_screen/login_screen.dart';
+import 'package:college_app/welcomeScreen/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 5),(){
         //for not returning to splash screen
-        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, WelcomeScreen.routeName, (route) => false);
     });
     return Scaffold(
       body: Center(

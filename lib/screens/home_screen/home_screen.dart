@@ -1,6 +1,6 @@
 import 'package:college_app/constant_color.dart';
 import 'package:college_app/screens/home_screen/widgets/student_data.dart';
-import 'package:flutter/foundation.dart';
+import 'package:college_app/screens/my_Profile/my_Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 //import 'package:url_launcher/url_launcher.dart';
@@ -11,6 +11,82 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          //wrap with PreferredSize
+          preferredSize: Size.fromHeight(45), //height of appbar
+          child: AppBar(
+            //elevation: 12.0,
+            title: Text(
+              "MIIT",
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            centerTitle: true, //appbar title
+            backgroundColor: kSecondaryColor, //appbar background color
+          )),
+      drawer: Drawer(
+        backgroundColor: Colors.transparent,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              // margin: EdgeInsets.zero,
+
+              decoration: BoxDecoration(
+                color: kTextGreyColor,
+                image: DecorationImage(
+                  opacity: 0.5,
+                  image: AssetImage('assets/images/MIITBuildingmain.jpg'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              accountName: Text(
+                'Aandavar',
+                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+              accountEmail: Text(
+                'Aandavar@gmail.com',
+              ),
+              currentAccountPicture: CircleAvatar(
+                //backgroundColor: kTextGreyColor,
+                backgroundImage: AssetImage('assets/images/viru.jpg'),
+                // foregroundColor: kTextGreyColor,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                'My Profile',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, MyProfileScreen.routeName);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text(
+                'About app',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, routeName);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text(
+                'Logout',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, routeName);
+              },
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           //we will divid ethe screen into two parts
@@ -28,38 +104,47 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        StudentName(studentName: 'Aandavarey',),
+                        StudentName(
+                          studentName: 'Aandavarey',
+                        ),
                         kHalfSizedBox,
-                        StudentClass(studentClass: 'MCA-B Batch |Roll No:21it64',),
+                        StudentClass(
+                          studentClass: 'MCA-B Batch |Roll No:21it64',
+                        ),
                         kHalfSizedBox,
-                        StudentYear(studentYear: '2021-23',),
+                        StudentYear(
+                          studentYear: '2021-23',
+                        ),
                       ],
                     ),
                     kHalfSizedBox,
-                   StudentPicture(picAddress: 'assets/images/viru.jpg',onPress: (){},),
+                    StudentPicture(
+                      picAddress: 'assets/images/viru.jpg',
+                      onPress: () {
+                        //go to profile
+                        Navigator.pushNamed(context, MyProfileScreen.routeName);
+                      },
+                    ),
                   ],
                 ),
-               sizedBox,
+                sizedBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     StudentDataCard(
                       onPressAttendance: (
                           //attendance screen
-                          ){},
+                          ) {},
                       attendanceTitle: 'Attendance',
                       attendancePercentage: '80.74%',
-
                     ),
                     StudentDataCard(
                       onPressAttendance: (
-                       //fee screen
-                       ){},
+                          //fee screen
+                          ) {},
                       attendanceTitle: 'Fee Due',
                       attendancePercentage: '80,000',
-
                     ),
-
                   ],
                 ),
               ],
@@ -94,7 +179,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         HomeCard(
                           onPress: () {},
-                          icon: 'assets/icons/assignment.svg',
+                          icon: 'assets/icons/assessment1.svg',
                           title: 'Assignments',
                         ),
                       ],
@@ -191,7 +276,7 @@ class HomeCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 2.5,
         height: MediaQuery.of(context).size.height / 6,
         decoration: BoxDecoration(
-          color: kPrimaryColor,
+          color: Colors.black12,
           borderRadius: BorderRadius.circular(kDefaultPadding / 2),
         ),
         child: Column(
@@ -202,12 +287,12 @@ class HomeCard extends StatelessWidget {
               icon,
               height: 45.0,
               width: 45.0,
-              color: kOtherColor,
+              //color: Colors.white60,
             ),
             Text(
               title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
             SizedBox(
               height: kDefaultPadding / 3,
