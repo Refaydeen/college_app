@@ -311,7 +311,7 @@ class _signUpState extends State<SignUpScreen> {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  color: kTextWhiteColor,
+
 
                 ),
               ),

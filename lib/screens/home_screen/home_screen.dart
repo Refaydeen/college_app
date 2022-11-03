@@ -1,6 +1,12 @@
 import 'package:college_app/constant_color.dart';
+import 'package:college_app/screens/About_Us.dart';
+import 'package:college_app/screens/event_Screen.dart';
+import 'package:college_app/screens/fee_screen/feespayment.dart';
+import 'package:college_app/screens/feedback_Screen.dart';
 import 'package:college_app/screens/home_screen/widgets/student_data.dart';
 import 'package:college_app/screens/my_Profile/my_Profile.dart';
+import 'package:college_app/screens/result_Screen.dart';
+import 'package:college_app/screens/website_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 //import 'package:url_launcher/url_launcher.dart';
@@ -67,11 +73,11 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.info),
               title: Text(
-                'About app',
+                'About Us',
                 style: Theme.of(context).textTheme.subtitle2,
               ),
               onTap: () {
-                Navigator.pushNamed(context, routeName);
+                Navigator.pushNamed(context, AboutUsScreen.routeName);
               },
             ),
             ListTile(
@@ -141,9 +147,11 @@ class HomeScreen extends StatelessWidget {
                     StudentDataCard(
                       onPressAttendance: (
                           //fee screen
-                          ) {},
+                          ) {
+                        Navigator.pushNamed(context, FeesPayment.routeName);
+                      },
                       attendanceTitle: 'Fee Due',
-                      attendancePercentage: '80,000',
+                      attendancePercentage: '50,200',
                     ),
                   ],
                 ),
@@ -173,7 +181,9 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(context, FeedBackScreen.routeName);
+                          },
                           icon: 'assets/icons/feedback.svg',
                           title: 'FeedBack',
                         ),
@@ -188,7 +198,9 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(context, EventScreen.routeName);
+                          },
                           icon: 'assets/icons/event.svg',
                           title: 'Events',
                         ),
@@ -203,12 +215,17 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(context, FeesPayment.routeName);
+                          },
                           icon: 'assets/icons/fee.svg',
                           title: 'Fee Payment',
                         ),
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(
+                                context, WebsiteScreen.routeName);
+                          },
                           icon: 'assets/icons/website.svg',
                           title: 'website',
                         ),
@@ -229,6 +246,24 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        HomeCard(
+                          onPress: () {
+                            Navigator.pushNamed(
+                                context, ResultScreen.routeName);
+                          },
+                          icon: 'assets/icons/examResult.svg',
+                          title: 'Exam Result',
+                        ),
+                        HomeCard(
+                          onPress: () {},
+                          icon: 'assets/icons/gallery.svg',
+                          title: 'Gallery',
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -237,22 +272,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class GotoWeb extends StatelessWidget {
-  const GotoWeb(
-      {Key? key,
-      required this.gotoWeb,
-      required this.iconWeb,
-      required this.webTitle})
-      : super(key: key);
-  final VoidCallback gotoWeb;
-  final String iconWeb;
-  final String webTitle;
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
 

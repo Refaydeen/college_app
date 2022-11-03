@@ -1,5 +1,4 @@
 
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:college_app/screens/login_screen/login_screen.dart';
 import 'package:college_app/welcomeScreen/welcome_screen.dart';
 import 'package:flutter/material.dart';
